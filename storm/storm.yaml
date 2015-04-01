@@ -1,7 +1,14 @@
+storm.local.dir: "/usr/share/storm"
 storm.zookeeper.servers:
     - "%zookeeper%"
-nimbus.host: "%nimbus%"
+
+# Nimbus Thrift port should be exposed to Docker Host IP
+nimbus.host: "172.17.42.1"
 drpc.servers:
   - "%nimbus%"
 drpc.port: 3772
 drpc.invocations.port: 3773
+
+nimbus.childopts: "-Djava.net.preferIPv4Stack=true"
+supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
+worker.childopts: "-Djava.net.preferIPv4Stack=true"

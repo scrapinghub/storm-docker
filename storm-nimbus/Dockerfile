@@ -1,5 +1,5 @@
-FROM wurstmeister/storm:0.9.3
-MAINTAINER Wurstmeister
+FROM vshlapakov/storm-base:0.9.4
+MAINTAINER vshlapakov
 
 RUN /usr/bin/config-supervisord.sh nimbus 
 RUN /usr/bin/config-supervisord.sh drpc
