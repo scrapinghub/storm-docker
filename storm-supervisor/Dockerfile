@@ -8,7 +8,7 @@ RUN wget -q -O /usr/bin/lein \
     && chmod +x /usr/bin/lein
 
 # Pre-install all needed jar-dependencies for Storm.
-ADD lein_base.clj /root/lein_base.clj
+ADD lein_base.clj /root/project.clj
 WORKDIR /root/
 RUN lein deps
 RUN cd /root/.m2 && find . -name '*.jar' -exec cp -nt $STORM_HOME/lib {} +
