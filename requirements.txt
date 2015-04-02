@@ -1,4 +1,4 @@
 six
 boto
 simplejson
--e git+https://github.com/scrapinghub/streamparse@feature-ssh-issue#egg=streamparse
+-e git+https://github.com/scrapinghub/streamparse.git#egg=streamparse

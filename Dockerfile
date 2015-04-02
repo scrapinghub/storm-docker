@@ -3,7 +3,8 @@ FROM scrapinghub/base:12.04
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64/
 
 RUN apt-get update \
-    && apt-get install -y unzip openjdk-7-jre-headless wget supervisor \
+    && apt-get install -y unzip openjdk-7-jre-headless \
+    && apt-get install -y wget git supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 # Download, install and config Storm
