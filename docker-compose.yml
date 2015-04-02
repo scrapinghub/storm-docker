@@ -7,9 +7,10 @@ zookeeper:
 nimbus:
   image: vshlapakov/storm:0.9.4
   hostname: nimbus
-  command: nimbus drpc
+  command: nimbus drpc ui
   ports:
     - "46627:6627"
+    - "49080:8080"
   expose:
     - "3772"
     - "3773"
@@ -29,16 +30,6 @@ supervisor:
     - "6703"
   volumes:
     - storm/logs:/var/log/storm
-  links:
-    - nimbus:nimbus
-    - zookeeper:zk
-
-ui:
-  image: vshlapakov/storm:0.9.4
-  hostname: ui
-  command: ui
-  ports:
-    - "49080:8080"
   links:
     - nimbus:nimbus
     - zookeeper:zk
