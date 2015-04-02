@@ -1,0 +1,44 @@
+zookeeper:
+  image: bryantsai/zookeeper
+  hostname: zookeeper
+  ports:
+    - "42181:2181"
+
+nimbus:
+  image: vshlapakov/storm:0.9.4
+  hostname: nimbus
+  command: nimbus drpc
+  ports:
+    - "46627:6627"
+  expose:
+    - "3772"
+    - "3773"
+  links:
+    - zookeeper:zk
+
+supervisor:
+  image: vshlapakov/storm:0.9.4
+  hostname: supervisor
+  command: supervisor logviewer
+  ports:
+    - "48080:8000"
+  expose:
+    - "6700"
+    - "6701"
+    - "6702"
+    - "6703"
+  volumes:
+    - storm/logs:/var/log/storm
+  links:
+    - nimbus:nimbus
+    - zookeeper:zk
+
+ui:
+  image: vshlapakov/storm:0.9.4
+  hostname: ui
+  command: ui
+  ports:
+    - "49080:8080"
+  links:
+    - nimbus:nimbus
+    - zookeeper:zk
