@@ -23,11 +23,6 @@ RUN groupadd storm \
 
 RUN ln -s $STORM_HOME/bin/storm /usr/bin/storm
 
-ADD storm.yaml $STORM_HOME/conf/storm.yaml
-ADD cluster.xml $STORM_HOME/logback/cluster.xml
-ADD config-supervisord.sh /usr/bin/config-supervisord.sh
-ADD start-supervisor.sh /usr/bin/start-supervisor.sh 
-
 RUN echo [supervisord] | tee -a /etc/supervisor/supervisord.conf \
     && echo nodaemon=true | tee -a /etc/supervisor/supervisord.conf
 
@@ -57,4 +52,11 @@ RUN cd /root/.m2 && find . -name '*.jar' -exec cp -nt $STORM_HOME/lib {} +
 ADD requirements.txt /root/requirements.txt
 RUN pip install -r requirements.txt
 
-CMD /usr/bin/start-supervisor.sh
+# Copy config files finally
+ADD storm.yaml $STORM_HOME/conf/storm.yaml
+ADD cluster.xml $STORM_HOME/logback/cluster.xml
+ADD config-supervisord.sh /usr/bin/config-supervisord.sh
+ADD start-storm.sh /usr/bin/start-storm.sh
+
+ENTRYPOINT ["/usr/bin/start-storm.sh"]
+CMD []
