@@ -2,7 +2,7 @@
 
 # Define Nimbus server
 NIMBUS_IP=`hostname -i`
-[[ ! -z "$NIMBUS_PORT_6627_TCP_ADDR" ]] && NIMBUS_IP=$NIMBUS_PORT_6627_TCP_ADDR
+[[ ! -z "$NIMBUS_PORT_6628_TCP_ADDR" ]] && NIMBUS_IP=$NIMBUS_PORT_6628_TCP_ADDR
 
 # Update Storm config file
 sed -i -e "s/%zookeeper%/$ZK_PORT_2181_TCP_ADDR/g" $STORM_HOME/conf/storm.yaml
