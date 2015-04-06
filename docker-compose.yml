@@ -7,22 +7,36 @@ zookeeper:
 nimbus:
   image: vshlapakov/storm:0.9.4
   hostname: nimbus
-  command: nimbus drpc ui
+  command: nimbus drpc
   ports:
-    - "46627:6627"
-    - "49080:8080"
-  expose:
-    - "3772"
-    - "3773"
+    - "6628:6627"
+    - "3774:3772"
+    - "3775:3773"
   links:
     - zookeeper:zk
+  environment:
+    NIMBUS_PORT_6628_TCP_ADDR: 172.17.42.1
+    NIMBUS_PORT_6628_TCP_PORT: 6627
+    DRPC_PORT_3774_TCP_PORT: 3772
+    DRPC_INVOCATIONS_PORT_3775_TCP_PORT: 3773
+
+ui:
+  image: vshlapakov/storm:0.9.4
+  hostname: ui
+  command: ui
+  ports:
+    - "49080:8080"
+  links:
+    - zookeeper:zk
+  environment:
+    NIMBUS_PORT_6628_TCP_ADDR: 172.17.42.1
 
 supervisor:
   image: vshlapakov/storm:0.9.4
   hostname: supervisor
   command: supervisor logviewer
   ports:
-    - "48080:8000"
+    - "8000"
   expose:
     - "6700"
     - "6701"
