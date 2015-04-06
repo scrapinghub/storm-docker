@@ -8,8 +8,8 @@ nimbus.thrift.port: %nimbus-port%
 
 drpc.servers:
   - "%nimbus%"
-drpc.port: 3374
-drpc.invocations.port: 3375
+drpc.port: %drpc-port%
+drpc.invocations.port: %drpc-invocations-port%
 
 nimbus.childopts: "-Djava.net.preferIPv4Stack=true"
 supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
