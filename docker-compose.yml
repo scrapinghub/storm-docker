@@ -15,7 +15,6 @@ nimbus:
   links:
     - zookeeper:zk
   environment:
-    NIMBUS_PORT_6628_TCP_ADDR: 172.17.42.1
     NIMBUS_PORT_6628_TCP_PORT: 6627
     DRPC_PORT_3774_TCP_PORT: 3772
     DRPC_INVOCATIONS_PORT_3775_TCP_PORT: 3773
@@ -28,8 +27,6 @@ ui:
     - "49080:8080"
   links:
     - zookeeper:zk
-  environment:
-    NIMBUS_PORT_6628_TCP_ADDR: 172.17.42.1
 
 supervisor:
   image: vshlapakov/storm:0.9.4
