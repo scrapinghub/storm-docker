@@ -6,5 +6,5 @@ script:
 publish:
   docker:
     docker_host: $DOCKER_HOST
-    image_name: i.scrapinghub.com/storm/{branch}:{version}
+    image_name: i.scrapinghub.com/storm/$CI_BRANCH
     keep_build: true
