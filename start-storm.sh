@@ -1,5 +1,8 @@
 #!/bin/bash
 
+HOSTNAME=`hostname -i`
+[[ ! -z "$STORM_LOCAL_HOSTNAME" ]] && HOSTNAME=$STORM_LOCAL_HOSTNAME
+
 # Define Nimbus server
 NIMBUS_IP="172.17.42.1"
 [[ ! -z "$NIMBUS_PORT_6628_TCP_ADDR" ]] && NIMBUS_IP=$NIMBUS_PORT_6628_TCP_ADDR
@@ -13,14 +16,12 @@ DRPC_INVOCATIONS_PORT=3775
 [[ ! -z "$DRPC_INVOCATIONS_PORT_3775_TCP_PORT" ]] && DRPC_INVOCATIONS_PORT=$DRPC_INVOCATIONS_PORT_3775_TCP_PORT
 
 # Update Storm config file
+sed -i -e "s/%local-hostname%/$HOSTNAME/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%zookeeper%/$ZK_PORT_2181_TCP_ADDR/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%nimbus%/$NIMBUS_IP/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%nimbus-port%/$NIMBUS_PORT/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%drpc-port%/$DRPC_PORT/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%drpc-invocations-port%/$DRPC_INVOCATIONS_PORT/g" $STORM_HOME/conf/storm.yaml
-
-
-echo "storm.local.hostname: `hostname -i`" >> $STORM_HOME/conf/storm.yaml
 
 # Update supervisord config depending on input
 n=0

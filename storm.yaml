@@ -1,4 +1,5 @@
 storm.local.dir: "/usr/share/storm"
+storm.local.hostname: "%local-hostname%"
 
 storm.zookeeper.servers:
     - "%zookeeper%"
