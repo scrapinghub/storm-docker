@@ -15,3 +15,5 @@ drpc.invocations.port: %drpc-invocations-port%
 nimbus.childopts: "-Djava.net.preferIPv4Stack=true"
 supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
 worker.childopts: "-Djava.net.preferIPv4Stack=true"
+
+topology.tick.tuple.freq.secs: 10
