@@ -1,7 +1,4 @@
 (defproject storm-deps "0.0.1-SNAPSHOT"
-  :source-paths ["src/clj" "topologies"]
-  :resource-paths ["_resources"]
-  :target-path "_build"
   :min-lein-version "2.0.0"
   :dependencies [ [org.apache.storm/storm-core "0.9.4"]
                   [org.apache.storm/storm-kafka "0.9.4"
