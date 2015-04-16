@@ -1,4 +1,6 @@
 six
 boto
+scrapy
 simplejson
+msgpack-python
 -e git+https://github.com/scrapinghub/streamparse.git#egg=streamparse
